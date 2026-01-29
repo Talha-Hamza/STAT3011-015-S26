@@ -1,102 +1,120 @@
 # ==============================================================================
 # STAT 3011 Lab 3 - Week 2 Solution
-# Date: Jan/29/2026
+# Date Jan292026
 # ==============================================================================
 
 # ==============================================================================
-# Part 1: Starting to Explore and Understand Data
+# Part 1 Starting to Explore and Understand Data
 # ==============================================================================
 
 # Run the following command to open the help file of iris for more information.
 # Note that the unit of the numerical data in iris is centimeter.
-
+iris
 
 # We can look at the complete data by running the following command.
-
+View(iris)
 
 # You can also look at the first few rows of data to get a sense of its content.
-
+head(iris)
 
 # ------------------------------------------------------------------------------
 # Data Structure
 # ------------------------------------------------------------------------------
 
-# Data are often organized so that the rows are the individuals/units and 
+# Data are often organized so that the rows are the individualsunits and 
 # the columns are the variables (measurements or characteristics of the unit).
 
-# How many iris flowers are included in the dataset?
+# How many iris flowers are included in the dataset
 
+str(iris)
+nrow(iris)
 
 # When you reference a variable in R code, make sure that you use exactly 
 # the same name as appeared in the output of names( ). 
 # Recall, R is case sensitive.
-
+names(iris)
 
 # ==============================================================================
-# Part 2: Numerical Summaries of Data
+# Part 2 Numerical Summaries of Data
 # ==============================================================================
 
 # The summary( ) function provides a summary for each variable in the dataset.
-
+summary(iris)
 
 # What summary statistics are provided for the quantitative variables 
-# (Sepal.Length, Sepal.Width, Petal.Length, and Petal.Width)?
+# (Sepal.Length, Sepal.Width, Petal.Length, and Petal.Width)
 
-# What summary statistics are provided for the categorical variable (Species)?
+# What summary statistics are provided for the categorical variable (Species)
 
 # ------------------------------------------------------------------------------
-# 2.1: Measures of Center and Spread
+# 2.1 Measures of Center and Spread
 # ------------------------------------------------------------------------------
 
-# The "$" takes out the variable Sepal.Length from the data iris so that 
+# The $ takes out the variable Sepal.Length from the data iris so that 
 # we can apply functions to it directly.
+mean(iris$Sepal.Length)
+median(iris$Sepal.Length)
 
+sd(iris$Sepal.Length)
+var(iris$Sepal.Length)
+IQR(iris$Sepal.Length)
 
 # ------------------------------------------------------------------------------
-# 2.2: Frequency Table for a Categorical Variable
+# 2.2 Frequency Table for a Categorical Variable
 # ------------------------------------------------------------------------------
 
 # For categorical variables, the table( ) function tabulates its values and 
 # produces the frequency table.
+table(iris$Species)
 
 # ==============================================================================
-# Part 3: Graphical Summaries of Data
+# Part 3 Graphical Summaries of Data
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
-# 3.1: Histogram
+# 3.1 Histogram
 # ------------------------------------------------------------------------------
 
+hist(iris$Sepal.Length)
 
 # An important argument in the hist( ) is breaks, which specifies the desired 
 # number of bins you want (it doesn't always give you exactly what you want). 
 # Changing its value will make the bins wider or narrower. 
-# Try the following two lines of code:
+# Try the following two lines of code
+hist(iris$Sepal.Length, breaks = 5)
+hist(iris$Sepal.Length, breaks = 30)
 
 # If you don't specify the value of breaks, hist( ) uses an optimization 
 # algorithm to determine the value of breaks.
 
 # Is the distribution of sepal length left-skewed, right-skewed, 
-# or roughly symmetric?
+# or roughly symmetric
 
 # ------------------------------------------------------------------------------
-# Exercise:
+# Exercise
 # ------------------------------------------------------------------------------
 
 # Produce a histogram for one of the other quantitative variables.
+hist(iris$Sepal.Width)
 
-# Optional: To update the labels and the title in a plot:
+# Optional To update the labels and the title in a plot
+hist(iris$Sepal.Length,
+     main = "Distribution of Sepal Length",
+     xlab = "Sepal Length (cm)",
+     ylab = "Frequency")
 
 # ------------------------------------------------------------------------------
 # 3.2 Boxplot
 # ------------------------------------------------------------------------------
 
+boxplot(iris$Sepal.Length)
 
 # By default, the boxplot( ) function marks any data point that falls more than 
 # 1.5×IQR above Q3 or more than 1.5×IQR below Q1 as an outlier. These points are 
 # represented by open circles and the whiskers are only extended to values that 
 # aren't considered to be outliers.
 
+boxplot(iris$Sepal.Length ~ iris$Species)
 
 # For side-by-side boxplots, the syntax of the formula in the boxplot( ) is 
 # numerical variable ~ group variable
@@ -105,5 +123,5 @@
 # and ylab and set them to your desired names.
 
 # Based on the side-by-side boxplot, which species of the iris flower has the 
-# shortest sepal length in general?
+# shortest sepal length in general
 # Setosa
