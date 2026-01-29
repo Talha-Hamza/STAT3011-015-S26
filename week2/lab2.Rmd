@@ -1,0 +1,145 @@
+---
+title: "STAT 3011 Lab 3"
+subtitle: "Week 2 Solution"
+date: "Jan/29/2026"
+output: html_document
+header-includes:
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \chead{Lab 2}
+  - \rhead{STAT 3011 - 007}
+---
+
+# Part 1: Starting to Explore and Understand Data
+
+Run the following command to open the help file of iris for more information. Note that the unit of the numerical data in iris is centimeter.
+
+```{r}
+
+```
+
+We can look at the complete data by running the following command.
+
+```{r}
+
+```
+
+You can also look at the first few rows of data to get a sense of its content.
+
+```{r}
+
+```
+
+## Data Structure
+
+Data are often organized so that the rows are the individuals/units and the columns are the variables (measurements or characteristics of the unit).
+
+```{r}
+
+```
+
+How many iris flowers are included in the dataset?
+
+```{r}
+
+```
+
+When you reference a variable in R code, make sure that you use exactly the same name as appeared in the output of names( ). Recall, R is case sensitive.
+
+# Part 2: Numerical Summaries of Data
+
+The summary( ) function provides a summary for each variable in the dataset.
+
+```{r}
+
+```
+
+What summary statistics are provided for the quantitative variables (Sepal.Length, Sepal.Width, Petal.Length, and Petal.Width)?
+
+What summary statistics are provided for the categorical variable (Species)?
+
+## 2.1: Measures of Center and Spread
+
+The "\$" takes out the variable Sepal.Length from the data iris so that we can apply functions to it directly.
+
+```{r}
+   
+```
+
+```{r}
+  
+```
+
+```{r}
+
+```
+
+```{r}
+ 
+```
+
+```{r}
+
+```
+
+## 2.2: Frequency Table for a Categorical Variable
+
+For categorical variables, the table( ) function tabulates its values and produces the frequency table.
+
+```{r}
+
+```
+
+# Part 3: Graphical Summaries of Data
+
+## 3.1: Histogram
+
+```{r}
+
+```
+
+An important argument in the hist( ) is breaks, which specifies the desired number of bins you want (it doesn’t always give you exactly what you want). Changing its value will make the bins wider or narrower. Try the following two lines of code:
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+If you don’t specify the value of breaks, hist( ) uses an optimization algorithm to determine the value of breaks.
+
+Is the distribution of sepal length left-skewed, right-skewed, or roughly symmetric?
+
+## Exercise:
+
+Produce a histogram for one of the other quantitative variables.
+
+```{r}
+
+```
+
+Optional: To update the labels and the title in a plot:
+
+```{r}
+
+```
+
+## 3.2 Boxplot
+
+```{r}
+
+```
+
+By default, the boxplot( ) function marks any data point that falls more than 1.5×IQR above Q3 or more than 1.5×IQR below Q1 as an outlier. These points are represented by open circles and the whiskers are only extended to values that aren’t considered to be outliers.
+
+```{r}
+
+```
+
+For side-by-side boxplots, the syntax of the formula in the boxplot( ) is numerical variable \~ group variable
+
+You can change the title and axis labels by adding the arguments main, xlab, and ylab and set them to your desired names.
+
+Based on the side-by-side boxplot, which species of the iris flower has the shortest sepal length in general?
