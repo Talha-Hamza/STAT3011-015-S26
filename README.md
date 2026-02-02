@@ -1,4 +1,4 @@
-# STAT 3011 – Section 007 (Spring 2026)
+# STAT 3011 - Section 007 (Spring 2026)
 
 To load the dataset directly into R, use the following command:
 
