@@ -1,0 +1,141 @@
+---
+title: "STAT 3011 Week 9"
+subtitle: "Section 007"
+date: "March/25/2026"
+output: html_document
+header-includes:
+        \usepackage{fancyhdr}
+        \pagestyle{fancy}
+        \chead{Week 9}
+        \rhead{STAT 3011}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Optional: Identifying Missing Values in Data
+
+Lets say you have a vector with some missing data
+
+```{r}
+x = c(1, -4.2, NA, 7.2)
+is.na(x)
+```
+
+```{r}
+sum(!is.na(x))
+```
+
+Finally, to get the number of data points that is not NA
+
+```{r}
+sum(!is.na(x))
+```
+
+## How Much Do UMN Students Workout Each Day?
+
+We will keep using the “Getting to Know You” data. Assume that the “Getting To Know You” Survey is a random sample drawn from the population of all U of M students.
+
+Download the csv file of the survey data from Canvas and import it into R.
+
+```{r}
+Getting2NoU <- read.csv(
+  "https://raw.githubusercontent.com/Talha-Hamza/STAT3011-015-S26/refs/heads/main/Getting2NoU_S2026.csv",
+  header = TRUE)
+```
+
+Suppose we are interested in providing an interval estimate for $\mu$, the mean amount of time that UMN students work out each day. Let’s construct a 96% confidence interval for $\mu$.
+
+The sample data are stored in the column of Workout (how many minutes per day a student exercises or participants in sports.)
+
+## Checking Conditions for Confidence Interval
+
+1.) **Do we have independent observations?** Yes, since the sample is assumed to be random drawn from a large population.
+
+2.) **Do we have a normal population**
+
+```{r}
+hist(Getting2NoU$Workout)
+```
+
+```{r}
+```
+
+No, the population is likely right skewed.
+
+**Is the sample large enough?**
+
+```{r}
+n <- sum(!is.na(Getting2NoU$Workout))
+n
+```
+
+Since n is greater than 30, yes, the sample size is large enough.
+
+## Constructing the CI “By Hand”
+
+**a.) Point Estimate** $\bar{x}$
+
+```{r}
+x_bar <- mean(Getting2NoU$Workout, na.rm = TRUE)
+x_bar
+```
+
+**b.) Standard Error of** $\bar{x}$ Recall the formula for standard error of $\bar{x}$ is $\dfrac{s}{\sqrt{n}}$
+
+```{r}
+s <- sd(Getting2NoU$Workout, na.rm = TRUE)
+se <- s/sqrt(n)
+se
+
+```
+
+**c.) Critical Value of** $t^*$
+
+Since we want the 96% CI, $\alpha = 0.04$ Recall from the slide $t^*$ = qt(1-$\alpha/2$), df - n-1}
+
+```{r}
+alpha = 1-0.96
+t_star <- qt(1-alpha/2, df=n-1)
+t_star
+```
+
+Note: for very large samples (such as ours) the t-distribution is very close to the standard normal distribution N\~(0,1)
+
+```{r}
+qt(1-alpha/2, df = 999) # t-distribution's 98th percentile
+```
+
+```{r}
+qnorm(1-alpha/2) # Standard normal distributions' 98th percentile
+```
+
+**d.)Assembling the Components of CI**
+
+Recall from slides the CI formula: $\overline{x} \pm t^* \cdot \underbrace{\dfrac{s}{\sqrt{n}}}_{\text{standard error}}$
+
+```{r}
+x_bar +c(-1,1)*t_star*se
+```
+
+Interpret: We are 96% confident that the true average time students spend per day exercising is between 54.1 min to 62.8 min.
+
+## Constructing the CI By t.test( )
+
+```{r}
+
+```
+
+## Exercise
+
+**Your turn: construct a 94% CI for the average height of UMN students by hand and by t.test( )?**
+
+```{r}
+
+
+```
+
+```{r}
+
+```
